@@ -5,5 +5,10 @@ This Chrome Extension was developed to help my work team to do the register on o
 # How to set up to use it
 After download, open the Google Chrome browser, and click on three point button, then more tools and Extensions. Click on Developer Mode button and load unpacked and select the folder where the download was saved.
 
+<img src="passo1.png">
+<img src="passo2.png">
+
 # How to use it
 Just insert the CPF number and click on "Enviar" button. The system will return a message in red letters wit a message if it's a invalid number or a green one if it's valid. If inserted a new number the app will show a new message for that number. The "Limpar" button may be used to stop showing the result of the research.
+
+<img src="passo3.png">
