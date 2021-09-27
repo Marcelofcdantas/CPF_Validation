@@ -12,3 +12,4 @@ After download, open the Google Chrome browser, and click on three point button,
 Just insert the CPF number and click on "Enviar" button. The system will return a message in red letters wit a message if it's a invalid number or a green one if it's valid. If inserted a new number the app will show a new message for that number. The "Limpar" button may be used to stop showing the result of the research.
 
 <img src="passo3.png">
+<img src="passo4.png">
