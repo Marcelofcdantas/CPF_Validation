@@ -5,76 +5,91 @@ document.addEventListener('DOMContentLoaded', function(){
     const answer = document.querySelector('#answer');
     const btnClean = document.querySelector('#btnClean');
 
-    submit.addEventListener('click', function(){
+    const clearAnswer = () => {
         if (answer.innerText){
             answer.innerText = '';
         }
+    }
+
+    const clearCPF = (CPF) => {
+        const array = [1,2,3,4,5,6,7,8,9,0];
+        let check = '';
+        for (let index = 0; index < CPF.length; index +=1){
+            let numero = parseInt(CPF[index]);
+            console.log(numero);
+            if (array.includes(numero)) {
+                check += CPF[index];
+            }
+        }
+        return check;
+    };
+
+    const validatingLengthCPF = (clearedCPF) => {
+        if (clearedCPF.length !== 11){
+            const textAnswer = document.createElement('p')
+            textAnswer.innerText = `CPF ${clearedCPF} Inválido, precisa conter 11 caracteres`;
+            textAnswer.style.color = 'red';
+            answer.appendChild(textAnswer);
+            return;
+        }
+    };
+
+    const validatingCPF = (clearedCPF) => {
+        let sum = 0;
+        let multiply = 0;
+        for (let index = 10; index > 1; index -= 1){
+            sum += clearedCPF[multiply] * index;
+            multiply += 1;
+        }
+        let residue = sum * 10 % 11;
+        if (residue === 10) residue = 0;
+        if ((residue) !== parseInt(clearedCPF[9])){
+            console.log('problema primeiro digito');
+            const textAnswer = document.createElement('p')
+            textAnswer.innerText = `CPF ${clearedCPF} Inválido`;
+            textAnswer.style.color = 'red';
+            answer.appendChild(textAnswer);
+            return;
+        }
+        sum = 0;
+        multiply = 0;
+        for (let index = 11; index > 1; index -= 1){
+            sum += clearedCPF[multiply] * index;
+            multiply += 1;
+        }
+        residue = sum * 10 % 11
+        if (residue === 10) residue = 0;
+        if ((residue) !== parseInt(clearedCPF[10])){
+            const textAnswer = document.createElement('p')
+            textAnswer.innerText = `CPF ${clearedCPF} Inválido`;
+            textAnswer.style.color = 'red';
+            answer.appendChild(textAnswer);
+            return;
+        } else {
+            const textAnswer = document.createElement('p')
+            textAnswer.innerText = `CPF ${clearedCPF} Válido`;
+            textAnswer.style.color = 'darkgreen';
+            answer.appendChild(textAnswer);
+            return;
+        }
+    }
+
+    submit.addEventListener('click', function(){
+
+        clearAnswer();
         const CPF = CPFField.value;
+
         function numberCPF(CPF) {
-            const array = [1,2,3,4,5,6,7,8,9,0];
-            let check = '';
-            for (let index = 0; index < CPF.length; index +=1){
-                let numero = parseInt(CPF[index]);
-                if (array.includes(numero)) {
-                    check += CPF[index];
-                }
-            }
-            if (check.length !== 11){
-                const textAnswer = document.createElement('p')
-                textAnswer.innerText = `CPF ${check} Inválido, precisa conter 11 caracteres`;
-                textAnswer.style.color = 'red';
-                answer.appendChild(textAnswer);
-                return 0;
-                // window.alert(`CPF ${check} Inválido, precisa conter 11 caracteres`);
-                // return `CPF ${check} Inválido, precisa conter 11 caracteres`;
-            }
-            let sum = 0;
-            let multiply = 0;
-            for (let index = 10; index > 1; index -= 1){
-                sum += check[multiply] * index;
-                multiply += 1;
-                console.log(sum);
-            }
-            let residue = sum * 10 % 11
-            if ((residue) !== parseInt(check[9])){
-                const textAnswer = document.createElement('p')
-                textAnswer.innerText = `CPF ${check} Inválido`;
-                textAnswer.style.color = 'red';
-                answer.appendChild(textAnswer);
-                return 0;
-                // window.alert(`CPF ${check} Inválido`);
-                // return `CPF ${check} Inválido`;
-            }
-            sum = 0;
-            multiply = 0;
-            for (let index = 11; index > 1; index -= 1){
-                sum += check[multiply] * index;
-                multiply += 1;
-            }
-            residue = sum * 10 % 11
-            console.log('residue', residue);
-            if ((residue) !== parseInt(check[10])){
-                const textAnswer = document.createElement('p')
-                textAnswer.innerText = `CPF ${check} Inválido`;
-                textAnswer.style.color = 'red';
-                answer.appendChild(textAnswer);
-                return 0;
-                    // window.alert(`CPF ${check} Inválido`);
-                    // return `CPF ${check} Inválido`;
-            } else {
-                const textAnswer = document.createElement('p')
-                textAnswer.innerText = `CPF ${check} Válido`;
-                textAnswer.style.color = 'darkgreen';
-                answer.appendChild(textAnswer);
-                return 0;
-                // window.alert(`CPF ${check} Aprovado`);
-                // return `CPF ${check} Válido`;
-            }
+            const clearedCPF = clearCPF(CPF);
+            validatingLengthCPF(clearedCPF)
+            console.log(clearedCPF);
+            validatingCPF(clearedCPF);
         } 
         window.alert = numberCPF(CPF);
     });
 
     btnClean.addEventListener('click', function(){
         answer.innerText = '';
+        CPFField.value = '';
     })
 })
