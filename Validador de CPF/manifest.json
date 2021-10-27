@@ -1,0 +1,11 @@
+{
+    "name": "Validador e corretor de CPF",
+    "description": "Valida e corrige CPF",
+    "author": "Marcelo Dantas",
+    "version": "1.0",
+    "browser_action":{
+        "default_title": "Validador e corretor de CPF",
+        "default_popup": "index.html"
+    },
+    "manifest_version": 2
+}
