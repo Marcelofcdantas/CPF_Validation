@@ -1,0 +1,13 @@
+* {
+    margin-top: 5px;
+}
+
+#btn {
+float: right;
+margin-bottom: 10px;
+display: inline;
+}
+
+#answer {
+    display: inline;
+}
