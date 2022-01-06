@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
+    
 
     const submit = document.querySelector('#btn');
     const CPFField = document.querySelector('#CPF');
@@ -12,12 +13,10 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     const clearCPF = (CPF) => {
-        const array = [1,2,3,4,5,6,7,8,9,0];
         let check = '';
         for (let index = 0; index < CPF.length; index +=1){
-            let numero = parseInt(CPF[index]);
-            console.log(numero);
-            if (array.includes(numero)) {
+            let numeric = /^[0-9]+$/;
+            if (numeric.test(CPF[index])) {
                 check += CPF[index];
             }
         }
