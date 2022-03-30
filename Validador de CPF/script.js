@@ -16,8 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let check = '';
         for (let index = 0; index < CPF.length; index +=1){
             let numero = parseInt(CPF[index]);
-            console.log(numero);
-            if (array.includes(numero)) {
+            if (!isNaN(numero)) {
                 check += CPF[index];
             }
         }
