@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
+    
 
     const submit = document.querySelector('#btn');
     const CPFField = document.querySelector('#CPF');
@@ -42,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function(){
         let residue = sum * 10 % 11;
         if (residue === 10) residue = 0;
         if ((residue) !== parseInt(clearedCPF[9])){
-            console.log('problema primeiro digito');
             const textAnswer = document.createElement('p')
             textAnswer.innerText = `CPF ${clearedCPF} Inválido`;
             textAnswer.style.color = 'red';
@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function(){
         function numberCPF(CPF) {
             const clearedCPF = clearCPF(CPF);
             validatingLengthCPF(clearedCPF)
-            console.log(clearedCPF);
             validatingCPF(clearedCPF);
         } 
         window.alert = numberCPF(CPF);
