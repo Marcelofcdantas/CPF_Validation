@@ -76,9 +76,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
         clearAnswer();
         const CPF = CPFField.value;
-
+              
         function numberCPF(CPF) {
             const clearedCPF = clearCPF(CPF);
+            navigator.clipboard.writeText(clearedCPF)
             validatingLengthCPF(clearedCPF)
             validatingCPF(clearedCPF);
         } 
